@@ -1,0 +1,13 @@
+.accountContainer {
+    height: 40rem;
+}
+
+.textWrapping {
+    overflow: hidden;
+    word-wrap: break-word;
+}
+
+.sitesContainer {
+    scroll-snap-type: x mandatory;
+    overflow-y: auto;
+}
