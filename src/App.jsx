@@ -17,6 +17,7 @@ import { UserSettings, userSettingsLoader } from './pages/UserSettings/UserSetti
 import { logOutLoader, LogOutPage } from './pages/LogOutPage/LogOutPage'
 import { MainAccountPage } from './pages/MainAccountPage/MainAccountPage'
 import { chatLoader, ChatPage } from './pages/ChatPage/ChatPage'
+import { chatInfoLoader, ChatInfoPage } from './pages/ChatInfoPage/ChatInfoPage'
 
 
 // creating routes
@@ -46,24 +47,30 @@ const router = createBrowserRouter(
                  element={<AccountLayout/>} 
                  loader={accountLayoutLoader}>
 
-                  {/* route '/account/' */}
-                  <Route index
-                         element={<MainAccountPage/>}/>
+                     {/* route '/account/' */}
+                     <Route index
+                            element={<MainAccountPage/>}/>
 
-                  {/* route '/account/userSettings' */}
-                  <Route path="userSettings" 
-                         element={<UserSettings/>} 
-                         loader={userSettingsLoader}/>
+                     {/* route '/account/userSettings' */}
+                     <Route path="userSettings" 
+                            element={<UserSettings/>} 
+                            loader={userSettingsLoader}/>
 
-                  {/* route '/account/chat/:id' */}
-                  <Route path="chat/:id" 
-                         element={<ChatPage/>}
-                         loader={chatLoader}/>
+                     {/* route '/account/chat/:id' */}
+                     <Route path="chat/:id" 
+                            element={<ChatPage/>}
+                            loader={chatLoader}/>
 
-                  {/* route '/account/logOut' */}
-                  <Route path="logOut" 
-                         element={<LogOutPage/>}
-                         loader={logOutLoader}/>
+                     {/* route '/account/chatInfo/:id' */}
+                     <Route path="chatInfo/:id" 
+                            element={<ChatInfoPage/>}
+                            loader={chatInfoLoader}/>
+
+
+                     {/* route '/account/logOut' */}
+                     <Route path="logOut" 
+                            element={<LogOutPage/>}
+                            loader={logOutLoader}/>
 
           </Route>
 

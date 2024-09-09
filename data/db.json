@@ -1,6 +1,29 @@
 {
-    "currentUser" : {
-        "id" : "",
-        "isLogged" : false
+  "currentUser": {
+    "id": "1",
+    "isLogged": true
+  },
+  "users": [
+    {
+      "id": "1",
+      "login": "Oskar",
+      "password": "root"
+    },
+    {
+      "id": "233",
+      "login": "sss",
+      "password": "root"
     }
+  ],
+  "chats": [
+    {
+      "id": "22",
+      "name": "chat",
+      "participants": [
+        "233", "1"
+      ],
+      "lastMessage": "22:28:43 : dsadas"
+    }
+  ],
+  "messages": []
 }

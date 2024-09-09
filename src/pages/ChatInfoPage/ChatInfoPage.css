@@ -1,0 +1,10 @@
+.usersContainer {
+    scroll-snap-type: y mandatory;
+    height: 7rem;
+    overflow-y: auto;
+}
+
+.item {
+    scroll-snap-align: center;
+    height: 3rem;
+}

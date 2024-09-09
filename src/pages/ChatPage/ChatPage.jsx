@@ -11,9 +11,10 @@ import { getCurrentUser, getMessagesFromChat, getRequest } from "../../api_funct
 import { postRequest } from "../../api_functions/postRequests"
 import { putRequest } from "../../api_functions/putRequests"
 
-// importring components
-import { MessageTab } from "../../components/MessageTab/MessageTab"
-import { PersonTab } from "../../components/PersonTab/PersonTab"
+// importing components
+import { Bar } from "../../components/Bar/Bar"
+import { MessageContainer } from "../../components/MessageContainer/MessageContainer"
+import { NewMessageInput } from "../../components/NewMessageInput/NewMessageInput"
 
 
 
@@ -27,7 +28,6 @@ export const ChatPage = () => {
 
     // creating useState variables
     let [messages, setMessages] = useState(messagesLoader)
-    let [newMessage, setNewMessage] = useState("")
     let [currentUser, setCurrentUser] = useState(currentUserLoader)
     let [chatInfo, setChatInfo] = useState(chatInfoLoader)
 
@@ -50,7 +50,7 @@ export const ChatPage = () => {
         return () => { clearInterval(interval) }
     })
 
-    const sendMessage = async () => {
+    const sendMessage = async (newMessage) => {
         // validating data
         if (newMessage == ""){ return }
 
@@ -72,7 +72,7 @@ export const ChatPage = () => {
             throw new Error("Something went wrong during sending message")
         }
 
-        chatInfo.lastMessage = date.toLocaleTimeString() + " " + newMessage
+        chatInfo.lastMessage = date.toLocaleTimeString() + " : " + newMessage
 
         try {
             await putRequest(`http://localhost:3000/chats/${chatInfo.id}`, chatInfo)
@@ -80,51 +80,22 @@ export const ChatPage = () => {
             throw new Error("Something went wrong during sending message")
         }
 
-        setNewMessage("")
     }
 
     return (
         <div className="container-fluid d-flex flex-column gap-2">
 
+            {/* bar */}
+            <Bar chatInfo={chatInfo}/>
+
             {/* displaying messages */}
-            <div className="container-fluid 
-                            d-flex flex-column flex-column-reverse
-                            text-dark chatContainer shadow py-3 gap-3">
+            <MessageContainer   messages={messages}
+                                chatInfo={chatInfo}
+                                currentUser={currentUser}/>
 
-                {messages.map((message)=>(
-                    <MessageTab key={message.id} messageInfo={message} currentUserInfo={currentUser}/>
-                ))}
-
-                <h3 className="display-3 py-5">
-                    Chat with <br />
-
-                    {chatInfo.participants.map( (person) => {
-                        if (person != currentUser.id){
-                            return (<PersonTab key={person} personID={person}/>)
-                        }
-                    })}
-
-                </h3>
-
-            </div>
 
             {/* new message input */}
-            <div className="container-fluid d-flex flex-row gap-2">
-
-                {/* input message */}
-                <input  type="text" 
-                        value={newMessage} 
-                        onChange={(e)=>{setNewMessage(e.target.value)}}
-                        className="text p-2 rounded border border-1 border-dark 
-                                    fs-4 col-lg-10 col-md-9 col-8" />
-
-                {/* button to send message */}
-                <button className="btn btn-outline-success col-lg-2 col-md-3 col-4" 
-                        onClick={()=>{ sendMessage() }}>
-                            <i className="bi bi-send fs-4"/>
-                </button>
-
-            </div>
+            <NewMessageInput onSendMessage={ sendMessage }/>
 
         </div>
     )
