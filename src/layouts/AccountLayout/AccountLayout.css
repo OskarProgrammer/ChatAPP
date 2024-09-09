@@ -8,6 +8,15 @@
 }
 
 .sitesContainer {
-    scroll-snap-type: x mandatory;
+    scroll-snap-type: y mandatory !important;
     overflow-y: auto;
+}
+
+.chatsContainer {
+    scroll-snap-type: x mandatory !important;
+    overflow-x: auto;
+}
+
+.chatTab {
+    min-height: 5rem;
 }
