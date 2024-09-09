@@ -1,0 +1,5 @@
+.message {
+    width:10rem;
+    overflow: hidden;
+    word-wrap: break-word;
+}
