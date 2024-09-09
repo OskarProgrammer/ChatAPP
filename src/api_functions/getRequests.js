@@ -56,3 +56,18 @@ export const getCurrentUserChats = async () => {
     // returning array
     return resultArray
 }
+
+// async getMessagesFromChat function gets all messages from chat
+export const getMessagesFromChat = async (chatID) => {
+    // getting all messages
+    const messages = await getRequest("http://localhost:3000/messages/")
+
+    // creating chatMessages
+    let chatMessages = []
+
+    // looping through messages
+    chatMessages = messages.filter((e) => e.chatID == chatID)
+
+    // returning chatMessages
+    return chatMessages
+}
