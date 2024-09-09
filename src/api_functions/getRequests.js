@@ -41,3 +41,18 @@ export const getCurrentUser = async () => {
     // returning result
     return currentUser
 }
+
+// async getCurrentUserChats function get all chats from currentUser
+export const getCurrentUserChats = async () => {
+    // getting currentUser
+    const currentUser = await getCurrentUser()
+
+    // getting all chats
+    const chats = await getRequest(`http://localhost:3000/chats/`)
+
+    // result array
+    let resultArray = chats.filter((e)=> e.participants.includes(currentUser.id))
+    
+    // returning array
+    return resultArray
+}
