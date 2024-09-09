@@ -15,6 +15,7 @@
 .chatsContainer {
     scroll-snap-type: x mandatory !important;
     overflow-x: auto;
+    word-wrap: break-word;
 }
 
 .chatTab {
