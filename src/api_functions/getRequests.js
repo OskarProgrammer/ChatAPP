@@ -21,11 +21,11 @@ export const getUserByName = async (name) => {
     const users = await getRequest("http://localhost:3000/users/")
 
     // looping for user with given name
-    users.map((user) => {
-        if ( user.login == name ) {
-            return user
-        } 
-    })
-
-    return null
+    const user = users.filter(e => e.login == name)
+    
+    if (user.length == 0) {
+        return null
+    } else {
+        return user[0]
+    }
 }
