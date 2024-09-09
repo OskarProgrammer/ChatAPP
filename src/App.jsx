@@ -10,8 +10,8 @@ import { MainLayout } from './layouts/MainLayout/MainLayout'
 
 // importing pages
 import { MainPage, mainPageLoader } from './pages/MainPage/MainPage'
-import { LoginPage } from './pages/LoginPage/LoginPage'
-import { RegistrationPage } from './pages/RegistrationPage/RegistrationPage'
+import { loginAction, LoginPage } from './pages/LoginPage/LoginPage'
+import { registerAction, RegistrationPage } from './pages/RegistrationPage/RegistrationPage'
 
 
 // creating routes
@@ -25,10 +25,10 @@ const router = createBrowserRouter(
           <Route index element={<MainPage/>} loader={mainPageLoader}/>  
 
           {/* login page */}
-          <Route path="login" element={<LoginPage/>}/>
+          <Route path="login" element={<LoginPage/>} action={loginAction}/>
 
           {/* regsiter page */}
-          <Route path="register" element={<RegistrationPage/>}/>
+          <Route path="register" element={<RegistrationPage/>} action={registerAction}/>
           
 
     </Route>
