@@ -29,3 +29,15 @@ export const getUserByName = async (name) => {
         return user[0]
     }
 }
+
+// async getCurrentUser function that get info about current user
+export const getCurrentUser = async () => {
+    // getting currentUser
+    const { id } = await getRequest(`http://localhost:3000/currentUser/`)
+
+    // getting all users
+    const currentUser = await getRequest(`http://localhost:3000/users/${id}`)
+
+    // returning result
+    return currentUser
+}
