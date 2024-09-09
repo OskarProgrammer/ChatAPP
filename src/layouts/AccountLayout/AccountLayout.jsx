@@ -36,7 +36,10 @@ export const AccountLayout = () => {
 
     return (
         // main container
-        <div className="container-lg col-lg-11 d-flex flex-lg-row flex-sm-column flex-column gap-2 accountContainer">
+        <div className="container-lg col-lg-12 
+                        d-flex flex-lg-row flex-sm-column flex-column gap-3
+                        accountContainer
+                        px-5 py-2">
 
             {/* left side */}
             <div className="container 
@@ -63,10 +66,10 @@ export const AccountLayout = () => {
                 {/* list of chats */}
                 <div className="container-fluid d-flex flex-lg-column flex-sm-row flex-row gap-3 chatsContainer">
                     {currentUserChats.map((chat)=>(
-                        <div key={chat.id} className="container-fluid btn btn-outline-dark d-flex flex-column gap-1 shadow p-2 chatTab">
+                        <NavLink to={`/account/chat/${chat.id}`} key={chat.id} className="container-fluid btn btn-outline-dark d-flex flex-column gap-1 shadow p-2 chatTab">
                             <span className="fw-bold fs-4">{chat.name}</span>
                             <span className="fst-italic">{chat.lastMessage}</span>
-                        </div>
+                        </NavLink>
                     ))}
                 </div>
                 
@@ -74,6 +77,7 @@ export const AccountLayout = () => {
 
             {/* right side */}
             <div className="container 
+                            bg-light
                             d-flex flex-column
                             shadow rounded p-3
                             gap-2 
