@@ -12,6 +12,10 @@ import { MainLayout } from './layouts/MainLayout/MainLayout'
 import { MainPage, mainPageLoader } from './pages/MainPage/MainPage'
 import { loginAction, LoginPage } from './pages/LoginPage/LoginPage'
 import { registerAction, RegistrationPage } from './pages/RegistrationPage/RegistrationPage'
+import { AccountLayout, accountLayoutLoader } from './layouts/AccountLayout/AccountLayout'
+import { UserSettings, userSettingsLoader } from './pages/UserSettings/UserSettings'
+import { logOutLoader, LogOutPage } from './pages/LogOutPage/LogOutPage'
+import { MainAccountPage } from './pages/MainAccountPage/MainAccountPage'
 
 
 // creating routes
@@ -22,14 +26,40 @@ const router = createBrowserRouter(
             element={<MainLayout/>}>
           
           {/* main page */}
-          <Route index element={<MainPage/>} loader={mainPageLoader}/>  
+          <Route  index 
+                  element={<MainPage/>} 
+                  loader={mainPageLoader}/>  
 
           {/* login page */}
-          <Route path="login" element={<LoginPage/>} action={loginAction}/>
+          <Route path="login" 
+                 element={<LoginPage/>} 
+                 action={loginAction}/>
 
           {/* regsiter page */}
-          <Route path="register" element={<RegistrationPage/>} action={registerAction}/>
+          <Route path="register" 
+                 element={<RegistrationPage/>} 
+                 action={registerAction}/>
           
+          {/* account layout */}
+          <Route path="account/" 
+                 element={<AccountLayout/>} 
+                 loader={accountLayoutLoader}>
+
+                  {/* route '/account/' */}
+                  <Route index
+                         element={<MainAccountPage/>}/>
+
+                  {/* route '/account/userSettings' */}
+                  <Route path="userSettings" 
+                         element={<UserSettings/>} 
+                         loader={userSettingsLoader}/>
+
+                  {/* route '/account/logOut' */}
+                  <Route path="logOut" 
+                         element={<LogOutPage/>}
+                         loader={logOutLoader}/>
+
+          </Route>
 
     </Route>
   )
