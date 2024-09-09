@@ -8,6 +8,10 @@ import { useEffect, useState } from "react"
 
 // importing api functions
 import { getCurrentUser, getMessagesFromChat, getRequest } from "../../api_functions/getRequests"
+import { postRequest } from "../../api_functions/postRequests"
+import { putRequest } from "../../api_functions/putRequests"
+
+// importring components
 import { MessageTab } from "../../components/MessageTab/MessageTab"
 import { PersonTab } from "../../components/PersonTab/PersonTab"
 
@@ -46,6 +50,38 @@ export const ChatPage = () => {
         return () => { clearInterval(interval) }
     })
 
+    const sendMessage = async () => {
+        // validating data
+        if (newMessage == ""){ return }
+
+        const date = new Date()
+
+        // creating newMessageObject
+        const newMessageObject = {
+            id : crypto.randomUUID(),
+            ownerID : currentUser.id,
+            chatID : chatInfo.id,
+            message : newMessage,
+            createdAt : date
+        }
+
+        // sending message to db
+        try {
+            await postRequest('http://localhost:3000/messages/',newMessageObject)
+        } catch {
+            throw new Error("Something went wrong during sending message")
+        }
+
+        chatInfo.lastMessage = date.toLocaleTimeString() + " " + newMessage
+
+        try {
+            await putRequest(`http://localhost:3000/chats/${chatInfo.id}`, chatInfo)
+        } catch {
+            throw new Error("Something went wrong during sending message")
+        }
+
+        setNewMessage("")
+    }
 
     return (
         <div className="container-fluid d-flex flex-column gap-2">
@@ -84,7 +120,7 @@ export const ChatPage = () => {
 
                 {/* button to send message */}
                 <button className="btn btn-outline-success col-lg-2 col-md-3 col-4" 
-                        onClick={()=>{}}>
+                        onClick={()=>{ sendMessage() }}>
                             <i className="bi bi-send fs-4"/>
                 </button>
 
