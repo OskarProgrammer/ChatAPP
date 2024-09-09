@@ -30,7 +30,7 @@ export const UserSettings = () => {
 
 
     return (
-        <div className="d-flex flex-column gap-4 h-100">
+        <div className="d-flex flex-column gap-4 mb-5 pb-0">
             {/* header */}
             <h2 className="display-6 fw-bold">User settings</h2>
             
@@ -46,7 +46,8 @@ export const UserSettings = () => {
 
             <p className="fs-3 textWrapping">ID : {currentUser.id}</p>
 
-            <Link to="/account/logOut" className="btn btn-outline-danger btn-lg col-3 mx-auto mb-0">Log out</Link>
+            <Link to="/account/" className="btn btn-outline-primary btn-lg col-3 mx-auto">Main page</Link>
+            <Link to="/account/logOut" className="btn btn-outline-danger btn-lg col-3 mx-auto ">Log out</Link>
 
         </div>
     )
