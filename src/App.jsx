@@ -16,6 +16,7 @@ import { AccountLayout, accountLayoutLoader } from './layouts/AccountLayout/Acco
 import { UserSettings, userSettingsLoader } from './pages/UserSettings/UserSettings'
 import { logOutLoader, LogOutPage } from './pages/LogOutPage/LogOutPage'
 import { MainAccountPage } from './pages/MainAccountPage/MainAccountPage'
+import { chatLoader, ChatPage } from './pages/ChatPage/ChatPage'
 
 
 // creating routes
@@ -53,6 +54,11 @@ const router = createBrowserRouter(
                   <Route path="userSettings" 
                          element={<UserSettings/>} 
                          loader={userSettingsLoader}/>
+
+                  {/* route '/account/chat/:id' */}
+                  <Route path="chat/:id" 
+                         element={<ChatPage/>}
+                         loader={chatLoader}/>
 
                   {/* route '/account/logOut' */}
                   <Route path="logOut" 
