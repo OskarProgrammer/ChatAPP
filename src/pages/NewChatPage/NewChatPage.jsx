@@ -4,7 +4,7 @@ import { useState } from "react"
 import { Form, redirect } from "react-router-dom"
 
 // importing components
-import { UserTab } from "../UserTab/UserTab"
+import { UserTab } from "../../components/UserTab/UserTab"
 import { UsersList } from "../../components/UsersList/UsersList"
 
 // importing api functions
