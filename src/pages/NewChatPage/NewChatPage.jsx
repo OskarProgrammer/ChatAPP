@@ -4,8 +4,8 @@ import { useState } from "react"
 import { Form } from "react-router-dom"
 
 // importing components
-import { PersonItem } from "../../components/PersonItem/PersonItem"
 import { getCurrentUser, getUserByName } from "../../api_functions/getRequests"
+import { UserTab } from "../UserTab/UserTab"
 
 
 export const NewChatPage = () => {
@@ -25,6 +25,7 @@ export const NewChatPage = () => {
         const user = await getUserByName(newUser)
         if (user == null){ return }
         if (user.id == currentUser.id){ return }
+        if (chatPeople.includes(user.id)){ return }
         
         
         // adding user
@@ -34,6 +35,10 @@ export const NewChatPage = () => {
 
     }
 
+    const removeUser = ( id ) => {
+        chatPeople = chatPeople.filter((e)=> e != id)
+        setChatPeople(chatPeople)
+    }
 
     return (
         <>
@@ -53,11 +58,17 @@ export const NewChatPage = () => {
                 </button>
 
                 <h4 className="display-6 fw-bold">Users</h4>
+
                 {/* displaying people */}
                 <div className="container-fluid usersContainer row d-flex justify-content-center">
-                    {chatPeople.map((person)=>(
-                        <PersonItem personID={person}/>
-                    ))}
+
+                    {chatPeople.map((person)=>{
+                        return (
+                            <UserTab personID={person}
+                                     onRemove={removeUser}/>
+                        )
+                    })}
+
                 </div>
 
             </Form>
