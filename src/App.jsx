@@ -19,7 +19,7 @@ import { MainAccountPage } from './pages/MainAccountPage/MainAccountPage'
 import { chatLoader, ChatPage } from './pages/ChatPage/ChatPage'
 import { chatInfoLoader, ChatInfoPage } from './pages/ChatInfoPage/ChatInfoPage'
 import { leaveChatLoader, LeaveChatPage } from './pages/LeaveChatPage/LeaveChatPage'
-import { NewChatPage } from './pages/NewChatPage/NewChatPage'
+import { newChatAction, NewChatPage } from './pages/NewChatPage/NewChatPage'
 
 
 // creating routes
@@ -60,7 +60,8 @@ const router = createBrowserRouter(
 
                      {/* route '/account/createChat' */}
                      <Route path="createChat" 
-                            element={<NewChatPage/>}/>
+                            element={<NewChatPage/>}
+                            action={newChatAction}/>
 
                      {/* route '/account/chat/:id' */}
                      <Route path="chat/:id" 
