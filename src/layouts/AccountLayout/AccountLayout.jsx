@@ -43,9 +43,10 @@ export const AccountLayout = () => {
 
             {/* left side */}
             <div className="container 
-                            d-flex flex-column gap-4 
+                            d-flex flex-lg-column justify-content-lg-start gap-4
+                            flex-sm-row justify-content-sm-end
                             text-light 
-                            col-lg-4 p-3
+                            col-lg-3 p-3
                             col-sm-12 col-12
                             shadow rounded
                             sitesContainer">
@@ -55,12 +56,21 @@ export const AccountLayout = () => {
                                     container-fluid 
                                     shadow  
                                     d-flex flex-column gap-1 rounded p-2
-                                    col-lg-12 col-md-12 col-sm-12 col-12
+                                    col-lg-12 col-md-4 col-sm-4 col-4
                                     textWrapping">
 
                     <i className="bi bi-person fs-4"/>
                     <span className="my-auto fs-5">{currentUser.login}</span>
 
+                </NavLink>
+
+                <NavLink to="createChat" className="btn btn-outline-success 
+                                    container-fluid 
+                                    shadow  
+                                    d-flex flex-column gap-1 rounded p-2
+                                    col-lg-12 col-md-4 col-sm-3 col-4
+                                    textWrapping">
+                    <i class="bi bi-plus fs-2 my-auto"/>
                 </NavLink>
 
                 {/* list of chats */}
@@ -81,7 +91,7 @@ export const AccountLayout = () => {
                             d-flex flex-column
                             shadow rounded p-3
                             gap-2 
-                            col-lg-8 
+                            col-lg-9 
                             sitesContainer">
 
                 <Outlet/>
