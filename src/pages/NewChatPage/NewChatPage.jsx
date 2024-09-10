@@ -6,6 +6,7 @@ import { Form } from "react-router-dom"
 // importing components
 import { getCurrentUser, getUserByName } from "../../api_functions/getRequests"
 import { UserTab } from "../UserTab/UserTab"
+import { UsersList } from "../../components/UsersList/UsersList"
 
 
 export const NewChatPage = () => {
@@ -51,7 +52,13 @@ export const NewChatPage = () => {
                 <input type="text"  placeholder="Add user" 
                                     value={newUser} 
                                     onChange={(e)=>{setNewUser(e.target.value)}} 
-                                    className="col-6 p-3 fs-5 text-center mx-auto"/>
+                                    className="col-6 p-3 fs-5 text-center mx-auto"
+                                    list="users"/>
+
+                <datalist id="users" >
+                    <UsersList chatPeople={chatPeople}/>
+                </datalist>
+
 
                 <button type="button" onClick={()=>{ addUser() }} className="btn btn-outline-success btn-lg col-3 mx-auto">
                     <i class="bi bi-plus fs-2" />
