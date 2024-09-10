@@ -1,6 +1,6 @@
 
 // importing functions and components from react library
-import { redirect, useLoaderData } from "react-router-dom"
+import { Link, redirect, useLoaderData } from "react-router-dom"
 import { useEffect, useState } from "react"
 
 // importing api functions
@@ -19,7 +19,7 @@ export const ChatInfoPage = () => {
     // getting chatInfo from loader
     const chatInfoLoader = useLoaderData()
 
-    // craeting useState variable
+    // creating useState variable
     let [chatInfo, setChatInfo] = useState(chatInfoLoader)
 
     // useEffect that update chatInfo every 500 ms
@@ -32,25 +32,6 @@ export const ChatInfoPage = () => {
 
         return () => { clearInterval(interval) }
     })
-
-    const leaveGroup = async () => {
-
-        // getting currentUser
-        const currentUser = await getCurrentUser()
-
-        // deleting user
-        chatInfo.participants = chatInfo.participants.filter(e => e != currentUser.id)
-
-        // updating data
-        try {
-            await putRequest(`http://localhost:3000/chats/${chatInfo.id}`, chatInfo)
-        } catch {
-            throw new Error("Error during updating chatInfo")
-        }
-
-        // TODO MAKING REFRESH OF PAGE
-
-    }
 
 
     return (
@@ -67,7 +48,7 @@ export const ChatInfoPage = () => {
 
             {/* buttons */}
             <div className="container-fluid d-flex flex-row justify-content-center gap-2">
-                <button className="btn btn-outline-danger btn-lg" onClick={()=>{leaveGroup()}}>Leave group</button>
+                <Link to={`/account/chatInfo/leave/${chatInfo.id}`} className="btn btn-outline-danger btn-lg" >Leave group </Link>
             </div>
     
         </div>
