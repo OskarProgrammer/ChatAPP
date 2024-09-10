@@ -46,8 +46,8 @@ export const UserSettings = () => {
 
             <p className="fs-3 textWrapping">ID : {currentUser.id}</p>
 
-            <Link to="/account/" className="btn btn-outline-primary btn-lg col-3 mx-auto">Main page</Link>
-            <Link to="/account/logOut" className="btn btn-outline-danger btn-lg col-3 mx-auto ">Log out</Link>
+            <Link to="/account/" className="btn btn-outline-primary btn-lg col-4 mx-auto">Main page</Link>
+            <Link to="/account/logOut" className="btn btn-outline-danger btn-lg col-4 mx-auto ">Log out</Link>
 
         </div>
     )
