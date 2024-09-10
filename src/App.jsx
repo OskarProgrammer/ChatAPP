@@ -18,6 +18,7 @@ import { logOutLoader, LogOutPage } from './pages/LogOutPage/LogOutPage'
 import { MainAccountPage } from './pages/MainAccountPage/MainAccountPage'
 import { chatLoader, ChatPage } from './pages/ChatPage/ChatPage'
 import { chatInfoLoader, ChatInfoPage } from './pages/ChatInfoPage/ChatInfoPage'
+import { leaveChatLoader, LeaveChatPage } from './pages/LeaveChatPage/LeaveChatPage'
 
 
 // creating routes
@@ -65,6 +66,10 @@ const router = createBrowserRouter(
                      <Route path="chatInfo/:id" 
                             element={<ChatInfoPage/>}
                             loader={chatInfoLoader}/>
+
+                     <Route path="chatInfo/leave/:id" 
+                            element={<LeaveChatPage/>}
+                            loader={leaveChatLoader}/>
 
 
                      {/* route '/account/logOut' */}
