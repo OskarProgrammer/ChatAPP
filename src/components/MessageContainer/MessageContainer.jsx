@@ -19,7 +19,7 @@ export const MessageContainer = (props) => {
                     <MessageTab key={message.id} 
                                 messageInfo={message} 
                                 currentUserInfo={currentUser}/>
-                                
+                    
                 ))}
 
                 <HeaderOfConversation chatInfo={chatInfo} 
