@@ -9,6 +9,12 @@ import { NavLink, Outlet, redirect, useLoaderData } from "react-router-dom"
 import { getCurrentUser, getCurrentUserChats } from "../../api_functions/getRequests"
 import { useEffect, useState } from "react"
 
+// importing components
+import { LeftSideBarButtons } from "../../components/LeftSideBarButtons/LeftSideBarButtons"
+import { ChatsList } from "../../components/ChatsList/ChatsList"
+
+
+
 export const AccountLayout = () => {
 
     // getting currentUserFromLoader
@@ -43,45 +49,17 @@ export const AccountLayout = () => {
 
             {/* left side */}
             <div className="container 
-                            d-flex flex-lg-column justify-content-lg-start gap-4
-                            flex-sm-row justify-content-sm-end
+                            d-flex flex-column justify-content-lg-start gap-4 justify-content-sm-end
                             text-light 
                             col-lg-3 p-3
                             col-sm-12 col-12
                             shadow rounded
                             sitesContainer">
 
-                {/* profile button */}
-                <NavLink to="userSettings" className="btn btn-outline-primary 
-                                    container-fluid 
-                                    shadow  
-                                    d-flex flex-column gap-1 rounded p-2
-                                    col-lg-12 col-md-4 col-sm-4 col-4
-                                    textWrapping">
-
-                    <i className="bi bi-person fs-4"/>
-                    <span className="my-auto fs-5">{currentUser.login}</span>
-
-                </NavLink>
-
-                <NavLink to="createChat" className="btn btn-outline-success 
-                                    container-fluid 
-                                    shadow  
-                                    d-flex flex-column gap-1 rounded p-2
-                                    col-lg-12 col-md-4 col-sm-3 col-4
-                                    textWrapping">
-                    <i class="bi bi-plus fs-2 my-auto"/>
-                </NavLink>
+                <LeftSideBarButtons currentUser={currentUser}/>
 
                 {/* list of chats */}
-                <div className="container-fluid d-flex flex-lg-column flex-sm-row flex-row gap-3 chatsContainer">
-                    {currentUserChats.map((chat)=>(
-                        <NavLink to={`/account/chat/${chat.id}`} key={chat.id} className="container-fluid btn btn-outline-dark d-flex flex-column gap-1 shadow p-2 chatTab">
-                            <span className="fw-bold fs-4">{chat.name}</span>
-                            <span className="fst-italic">{chat.lastMessage}</span>
-                        </NavLink>
-                    ))}
-                </div>
+                <ChatsList currentUserChats={currentUserChats}/>
                 
             </div>
 
