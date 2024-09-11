@@ -18,9 +18,11 @@ export const MessageTab = (props) => {
     const message = props.messageInfo
     const currentUser = props.currentUserInfo
 
+
     // creating useState variables
     let [ownerInfo, setOwnerInfo] = useState({})
     let [isExpanded, setIsExpanded] = useState(false)
+
 
     // useEffect to fetch data about owner of message
     useEffect(()=>{
@@ -69,13 +71,28 @@ export const MessageTab = (props) => {
     // creating sideOfMessage
     const sideOfMessage = message.ownerID == currentUser.id ? "justify-content-end" : "justify-content-start"
 
+    // creating sideOfUsers
+    const sideOfUsers = message.ownerID == currentUser.id ? "text-end" : "text-start"
+
     return (
         <div className={`container-fluid d-flex flex-row ${sideOfMessage}`}
              onClick={()=> { setIsExpanded(!isExpanded)} }>
 
                 <div className="col-lg-3 d-flex flex-column">
+                    
                     {messageFormat}
                     {timeOfSending}
+
+                    <span className={`${sideOfUsers}`} > 
+                        {/* {message.isReadBy.map((user)=>{
+                            if (!lastMessage.isReadBy.includes(user)){
+                                return (<>{user} </>)
+                            } else if (lastMessage.id == message.id) {
+                                return (<>{user} </>)
+                            }
+                        })}     */}
+                    </span>
+
                 </div>
 
         </div>
