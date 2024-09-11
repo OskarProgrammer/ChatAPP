@@ -4,6 +4,7 @@ import "./MessageTab.css"
 
 // importing api functions
 import { getRequest } from "../../api_functions/getRequests"
+import { putRequest } from "../../api_functions/putRequests"
 
 // importing functions and components from react library
 import { useEffect, useState } from "react"
@@ -22,6 +23,7 @@ export const MessageTab = (props) => {
     // creating useState variables
     let [ownerInfo, setOwnerInfo] = useState({})
     let [isExpanded, setIsExpanded] = useState(false)
+    let [isResponsing, setIsResponsing] = useState(false)
 
 
     // useEffect to fetch data about owner of message
@@ -61,6 +63,22 @@ export const MessageTab = (props) => {
 
     }
 
+    const handleRightClick = (e) => {
+        e.preventDefault()
+        setIsResponsing(!isResponsing)
+    }
+
+    const setNewMessage = async () => {
+        // posting newResponseMessage
+        try {
+            await putRequest(`http://localhost:3000/currentResponseMessage/`, message)
+        } catch {
+            throw new Error("Error during putting data")
+        }
+
+        setIsResponsing(false)
+    }
+
     // creating format of timeMessage
     const timeOfSending = isExpanded ? <span className="text-center">{ diff() }</span> : ""
 
@@ -68,18 +86,24 @@ export const MessageTab = (props) => {
     const messageFormat = message.ownerID == currentUser.id ? <span className={`fs-5 p-3 rounded bg-primary text-light message`}>{message.message}</span> :
                                                               <span className={`fs-5 p-3 rounded bg-dark text-light message`}>{ownerInfo.login} : {message.message}</span>
     
+    // creating responseMessage
+    const responseMessage = isResponsing ? <button onClick={() => {setNewMessage()}} className=" fw-bold btn btn-outline-primary mb-1"><i className="bi bi-arrow-90deg-right"/></button> : ""
+
     // creating sideOfMessage
     const sideOfMessage = message.ownerID == currentUser.id ? "justify-content-end" : "justify-content-start"
 
     // creating sideOfUsers
     const sideOfUsers = message.ownerID == currentUser.id ? "text-end" : "text-start"
 
+
     return (
         <div className={`container-fluid d-flex flex-row ${sideOfMessage}`}
-             onClick={()=> { setIsExpanded(!isExpanded)} }>
+             onClick={()=> { 
+                if ( !isResponsing ) { setIsExpanded(!isExpanded) }
+             } } onContextMenu={ (e) => { handleRightClick(e) } }>
 
                 <div className="col-lg-3 d-flex flex-column">
-                    
+                    {responseMessage}
                     {messageFormat}
                     {timeOfSending}
 
