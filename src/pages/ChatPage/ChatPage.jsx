@@ -23,13 +23,14 @@ export const ChatPage = () => {
     const {id} = useParams()
 
     // getting messages from loader
-    const [messagesLoader, currentUserLoader, chatInfoLoader] = useLoaderData()
+    const [messagesLoader, currentUserLoader, chatInfoLoader, currentResponseLoader] = useLoaderData()
     
 
     // creating useState variables
     let [messages, setMessages] = useState(messagesLoader)
     let [currentUser, setCurrentUser] = useState(currentUserLoader)
     let [chatInfo, setChatInfo] = useState(chatInfoLoader)
+    let [currentResponse, setCurrentResponse] = useState(currentResponseLoader)
 
 
     // useEffect that updates messages
@@ -44,6 +45,9 @@ export const ChatPage = () => {
 
             chatInfo = await getRequest(`http://localhost:3000/chats/${id}`)
             setChatInfo(chatInfo)
+
+            currentResponse = await getRequest(`http://localhost:3000/currentResponseMessage/`)
+            setCurrentResponse(currentResponse)
 
         },100)
 
@@ -95,7 +99,8 @@ export const ChatPage = () => {
             {/* displaying messages */}
             <MessageContainer   messages={messages}
                                 chatInfo={chatInfo}
-                                currentUser={currentUser}/>
+                                currentUser={currentUser}
+                                currentResponse={currentResponse}/>
 
 
             {/* new message input */}
@@ -117,7 +122,10 @@ export const chatLoader = async ( {params} ) => {
 
     // getting chatInfo
     const chatInfo = await getRequest(`http://localhost:3000/chats/${id}`)
+
+    // getting currentResponse
+    const currentResponse = await getRequest(`http://localhost:3000/currentResponseMessage/`)
     
     // returning messages
-    return [messages.reverse() , currentUser, chatInfo]
+    return [messages.reverse() , currentUser, chatInfo, currentResponse]
 }
