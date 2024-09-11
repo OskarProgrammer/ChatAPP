@@ -62,7 +62,8 @@ export const ChatPage = () => {
             ownerID : currentUser.id,
             chatID : chatInfo.id,
             message : newMessage,
-            createdAt : date
+            createdAt : date,
+            isReadBy : [currentUser.id]
         }
 
         // sending message to db
@@ -72,7 +73,10 @@ export const ChatPage = () => {
             throw new Error("Something went wrong during sending message")
         }
 
-        chatInfo.lastMessage = date.toLocaleTimeString() + " : " + newMessage
+        chatInfo.lastMessage = {
+            messageID : newMessageObject.id,
+            content : date.toLocaleTimeString() + " : " + newMessage
+        }
 
         try {
             await putRequest(`http://localhost:3000/chats/${chatInfo.id}`, chatInfo)
@@ -106,7 +110,7 @@ export const chatLoader = async ( {params} ) => {
     const { id } = params
 
     // getting messages
-    const messages = await getMessagesFromChat(id)
+    let messages = await getMessagesFromChat(id)
 
     // getting currentUser
     const currentUser = await getCurrentUser()
