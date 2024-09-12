@@ -19,25 +19,27 @@ export const NewMessageInput = (props) => {
 
 
     return (
-        <div className="container-fluid d-flex flex-row gap-2">
+        <div className="container-fluid d-flex flex-column gap-2">
 
                     {/* message that is being responded */}
                     <span>
                         {currentResponse.message}
                     </span>
 
-                    {/* input message */}
-                    <input  type="text" 
-                            value={newMessage} 
-                            onChange={(e)=>{setNewMessage(e.target.value)}}
-                            className="text p-2 rounded border border-1 border-dark 
-                                        fs-4 col-lg-10 col-md-9 col-8" />
+                    <div className="container-fluid d-flex flex-row gap-2">
+                            {/* input message */}
+                        <input  type="text" 
+                                value={newMessage} 
+                                onChange={(e)=>{setNewMessage(e.target.value)}}
+                                className="text p-2 rounded border border-1 border-dark 
+                                            fs-4 col-lg-10 col-md-9 col-8" />
 
-                    {/* button to send message */}
-                    <button className="btn btn-outline-success col-lg-2 col-md-3 col-4" 
-                            onClick={()=>{ sendMessage() }}>
-                                <i className="bi bi-send fs-4"/>
-                    </button>
+                        {/* button to send message */}
+                        <button className="btn btn-outline-success col-lg-2 col-md-3 col-4" 
+                                onClick={()=>{ sendMessage() }}>
+                                    <i className="bi bi-send fs-4"/>
+                        </button>
+                    </div>
 
         </div>
     )

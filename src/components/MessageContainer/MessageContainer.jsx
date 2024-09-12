@@ -18,7 +18,6 @@ export const MessageContainer = (props) => {
     const messages = props.messages
     const chatInfo = props.chatInfo
     const currentUser = props.currentUser
-    const currentResponse = props.currentResponse
     
 
     return(
@@ -38,13 +37,6 @@ export const MessageContainer = (props) => {
 
                 <HeaderOfConversation chatInfo={chatInfo} 
                                       currentUser={currentUser}/>
-
-                {/* {currentResponse.id != "" ? 
-                    <span className="p-3 fw-bold bg-primary rounded position-sticky text-light d-flex flex-row justify-content-around response">
-                        <p className="bg-primary py-3 my-auto p-3 rounded">You are responsing to : <br/> {currentResponse.message}</p>
-                        <button className="btn btn-outline-danger btn-lg">Stop responsing</button>
-                    </span> 
-                : ""} */}
                 
         </div>
     )

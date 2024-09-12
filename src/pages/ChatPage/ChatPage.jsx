@@ -100,11 +100,12 @@ export const ChatPage = () => {
             <MessageContainer   messages={messages}
                                 chatInfo={chatInfo}
                                 currentUser={currentUser}
-                                currentResponse={currentResponse}/>
+                                />
 
 
             {/* new message input */}
-            <NewMessageInput onSendMessage={ sendMessage }/>
+            <NewMessageInput onSendMessage={ sendMessage }
+                             currentResponse={currentResponse}/>
 
         </div>
     )
