@@ -92,9 +92,6 @@ export const MessageTab = (props) => {
     // creating sideOfMessage
     const sideOfMessage = message.ownerID == currentUser.id ? "justify-content-end" : "justify-content-start"
 
-    // creating sideOfUsers
-    const sideOfUsers = message.ownerID == currentUser.id ? "text-end" : "text-start"
-
 
     return (
         <div className={`container-fluid d-flex flex-row ${sideOfMessage}`}
@@ -102,21 +99,10 @@ export const MessageTab = (props) => {
                 if ( !isResponsing ) { setIsExpanded(!isExpanded) }
              } } onContextMenu={ (e) => { handleRightClick(e) } }>
 
-                <div className="col-lg-3 d-flex flex-column">
+                <div className='col-lg-3 d-flex flex-column'>
                     {responseMessage}
                     {messageFormat}
                     {timeOfSending}
-
-                    <span className={`${sideOfUsers}`} > 
-                        {/* {message.isReadBy.map((user)=>{
-                            if (!lastMessage.isReadBy.includes(user)){
-                                return (<>{user} </>)
-                            } else if (lastMessage.id == message.id) {
-                                return (<>{user} </>)
-                            }
-                        })}     */}
-                    </span>
-
                 </div>
 
         </div>

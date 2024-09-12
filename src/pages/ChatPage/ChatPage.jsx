@@ -91,7 +91,7 @@ export const ChatPage = () => {
     }
 
     return (
-        <div className="container-fluid d-flex flex-column gap-2">
+        <div className="container-fluid d-flex flex-column gap-2 page">
 
             {/* bar */}
             <Bar chatInfo={chatInfo}/>

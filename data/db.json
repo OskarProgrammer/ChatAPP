@@ -3,6 +3,16 @@
     "id": "1",
     "isLogged": true
   },
+  "currentResponseMessage": {
+    "id": "aac97a3a-762f-48fa-bdd9-1a2a47575733",
+    "ownerID": "1",
+    "chatID": "67f295fb-576f-4040-b96f-9935b353e0fe",
+    "message": "s",
+    "createdAt": "2024-09-12T11:10:16.572Z",
+    "isReadBy": [
+      "1"
+    ]
+  },
   "users": [
     {
       "id": "1",
@@ -17,13 +27,38 @@
   ],
   "chats": [
     {
-      "id": "22",
-      "name": "chat",
+      "id": "67f295fb-576f-4040-b96f-9935b353e0fe",
+      "name": "testowy chat",
       "participants": [
-        "233", "1"
+        "233",
+        "1"
       ],
-      "lastMessage": "22:28:43 : dsadas"
+      "lastMessage": {
+        "messageID": "9b8fba3b-9675-49f4-912f-7b35ddf501a3",
+        "content": "13:14:24 : s"
+      }
     }
   ],
-  "messages": []
+  "messages": [
+    {
+      "id": "aac97a3a-762f-48fa-bdd9-1a2a47575733",
+      "ownerID": "1",
+      "chatID": "67f295fb-576f-4040-b96f-9935b353e0fe",
+      "message": "s",
+      "createdAt": "2024-09-12T11:10:16.572Z",
+      "isReadBy": [
+        "1"
+      ]
+    },
+    {
+      "id": "9b8fba3b-9675-49f4-912f-7b35ddf501a3",
+      "ownerID": "1",
+      "chatID": "67f295fb-576f-4040-b96f-9935b353e0fe",
+      "message": "s",
+      "createdAt": "2024-09-12T11:14:24.756Z",
+      "isReadBy": [
+        "1"
+      ]
+    }
+  ]
 }

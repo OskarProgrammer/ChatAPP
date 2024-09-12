@@ -19,20 +19,23 @@ export const NewMessageInput = (props) => {
 
 
     return (
-        <div className="container-fluid d-flex flex-column gap-2">
+        <div className="container-fluid d-flex flex-column gap-2 newMessage">
 
-                    {/* message that is being responded */}
-                    <span>
-                        {currentResponse.message}
-                    </span>
+                    {/* message that is being responded
+                    {currentResponse.id != "" ? 
+                        <span className="bg-primary rounded p-3 fw-bold text-light mx-auto">
+                            <button className="btn btn-outline-danger btn-lg">s</button>
+                        </span> 
+                        
+                    : ""} */}
 
                     <div className="container-fluid d-flex flex-row gap-2">
                             {/* input message */}
-                        <input  type="text" 
+                        <textarea  type="text"  style={ { "resize" : "none" }}
                                 value={newMessage} 
                                 onChange={(e)=>{setNewMessage(e.target.value)}}
                                 className="text p-2 rounded border border-1 border-dark 
-                                            fs-4 col-lg-10 col-md-9 col-8" />
+                                            fs-5 col-lg-10 col-md-9 col-8 " />
 
                         {/* button to send message */}
                         <button className="btn btn-outline-success col-lg-2 col-md-3 col-4" 
