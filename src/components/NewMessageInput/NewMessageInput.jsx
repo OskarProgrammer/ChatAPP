@@ -5,6 +5,9 @@ import { useState } from "react"
 
 export const NewMessageInput = (props) => {
 
+    // getting data from props
+    const currentResponse = props.currentResponse
+
     // creating useState variable
     let [newMessage, setNewMessage] = useState("")
 
@@ -17,6 +20,11 @@ export const NewMessageInput = (props) => {
 
     return (
         <div className="container-fluid d-flex flex-row gap-2">
+
+                    {/* message that is being responded */}
+                    <span>
+                        {currentResponse.message}
+                    </span>
 
                     {/* input message */}
                     <input  type="text" 

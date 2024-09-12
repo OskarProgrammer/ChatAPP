@@ -23,14 +23,6 @@ export const UsersList = (props) => {
             // filtring
             items = users.filter(e => (e.id != currentUser.id) && (!props.chatPeople.includes(e.id)) )
 
-            items.map( async (item) => {
-                const user = await getRequest(`http://localhost:3000/users/${item}`)
-                item = {
-                    id : item,
-                    login : user.login
-                }
-            })
-
             setItems(items)
 
         },100)
